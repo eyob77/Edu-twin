@@ -1,6 +1,7 @@
 // import LoginPage from "./pages/loginPage"
 
-import StudentPage from "./pages/studentPage"
+// import StudentPage from "./pages/studentPage"
+import SubjectTableOfContent from "./pages/subject-table-of-content"
 
 // import TeacherPage from "./pages/teacherPage"
 
@@ -8,7 +9,7 @@ import StudentPage from "./pages/studentPage"
 function App() {
 
   return (
-    <StudentPage/>
+    <SubjectTableOfContent />
   )
 }
 
