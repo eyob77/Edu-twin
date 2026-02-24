@@ -173,7 +173,7 @@ export default function SubjectTableOfContent() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
-        <div className="flex justify-between items-center gap-2 ">
+        <div className="flex justify-between items-center gap-2">
           <a href="#" className="flex items-center gap-2 font-medium">
             <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
               <GalleryVerticalEnd className="size-4" />
@@ -185,14 +185,18 @@ export default function SubjectTableOfContent() {
           </h1>
        
         </div>
-        <div className="flex w-full h-full items-center justify-center ">
+        <div className="flex w-full h-full  justify-center mt-20 ">
           <div className="w-full  max-h-[70vh] overflow-y-auto overflow-x-hidden p-4">
+          {/* coll */}
             <RecursiveAccordion items={items} />
           </div>
         </div>
       </div>
       <div className="bg-muted relative hidden lg:block">
-        <ChartRadialText/>
+        <div className="w-full h-full flex items-center justify-center">
+
+        <ChartRadialText/>  
+        </div>
       </div>
     </div>
   )
@@ -208,15 +212,15 @@ export function RecursiveAccordion({
   level = 0,
 }: RecursiveAccordionProps) {
   return (
-    <Accordion type="multiple" className="w-full">
+    <Accordion type="multiple" className="w-full pl-4">
       {items.map((item) => (
         <AccordionItem
           key={item.value}
           value={item.value}
           className={`border-b last:border-b-0 pl-${level * 4}`}
         >
-          <AccordionTrigger>
-            <span className="font-medium">{item.trigger}</span>
+          <AccordionTrigger> 
+            <span className="font-medium text-xl">{item.trigger}</span>
           </AccordionTrigger>
 
           <AccordionContent>

@@ -25,6 +25,7 @@ export default function StudentPage() {
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
+          {/* router here */}
             <div className="flex flex-col justify-between gap-4 py-4 md:gap-6 md:py-6 h-[80%]">
 
               <div className="flex gap-2 px-4">
