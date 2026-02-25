@@ -29,7 +29,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar"
+import { useLocation } from "react-router-dom"
+import { useEffect } from "react"
 
 const data = {
   user: {
@@ -149,6 +152,16 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const {setOpen} = useSidebar();
+  const {pathname} = useLocation();
+
+ useEffect(() => {
+  if (pathname.includes("student-table-content")) {
+    setOpen(false);
+  }
+}, [pathname]);
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
