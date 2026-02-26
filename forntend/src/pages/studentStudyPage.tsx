@@ -21,13 +21,13 @@ export default function StudentStudyPage() {
           <div className="col-span-1 h-full flex flex-col bg-white">
             
             {/* Top Sidebar Area (Scrollable if messages/content get long) */}
-            <div className="flex-1 overflow-y-auto p-4 border-b">
+            <div className="h-[75%] overflow-y-auto p-4 border-b">
               <p className="text-xs uppercase text-gray-400 font-bold mb-4">Chat</p>
               {/* Content goes here */}
             </div>
 
             {/* Bottom Input (Stay put and Responsive) */}
-            <div className="p-4 bg-white shrink-0">
+            <div className="p-4 bg-white shrink-0 h-[25%]">
               <CopilotInput />
             </div>
             
