@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Math",
+    "description": "Explore the world of numbers, equations, and mathematical concepts.",
+    "image": "./image.png"
+  },
+  {
+    "id": 2,
+    "title": "Biology",
+    "description": "Discover the wonders of the natural world and scientific principles.",
+    "image": "./biology.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Physics",
+    "description": "Study the fundamental laws of nature and physical phenomena.",
+    "image": "./Physics.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Chemistry",
+    "description": "Explore the properties and interactions of matter.",
+    "image": "./chemistry.jpg"
+  }
+]

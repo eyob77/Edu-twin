@@ -21,12 +21,10 @@ import {
 export const description = "A radar chart with dots"
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { subject: "Math", progresse: 186 },
+  { subject: "Bio", progresse: 305 },
+  { subject: "Chem", progresse: 237 },
+  { subject: "Phy", progresse: 273 },
 ]
 
 const chartConfig = {
@@ -40,9 +38,9 @@ export function ChartRadarDots() {
   return (
     <Card>
       <CardHeader className="items-center">
-        <CardTitle>Radar Chart - Dots</CardTitle>
+        <CardTitle>Subject-performance</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing which subject you perefer the most based on your performance in each subject
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-0">
@@ -52,10 +50,10 @@ export function ChartRadarDots() {
         >
           <RadarChart data={chartData}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <PolarAngleAxis dataKey="month" />
+            <PolarAngleAxis dataKey="subject" />
             <PolarGrid />
             <Radar
-              dataKey="desktop"
+              dataKey="progresse"
               fill="var(--color-desktop)"
               fillOpacity={0.6}
               dot={{
@@ -68,10 +66,7 @@ export function ChartRadarDots() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="text-muted-foreground flex items-center gap-2 leading-none">
-          January - June 2024
+          You progressed by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
     </Card>
