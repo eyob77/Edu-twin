@@ -19,7 +19,7 @@ function App() {
           <Route element={<SidebarProviderComponent />}>
 
             <Route path="/student-dashbored" element={<StudentPage />} />
-            <Route path="/student-table-content" element={<SubjectTableOfContent />} />
+            <Route path="/student-table-content/:subject" element={<SubjectTableOfContent />} />
             <Route path="/student-study" element={<StudentStudyPage />} />
 
 

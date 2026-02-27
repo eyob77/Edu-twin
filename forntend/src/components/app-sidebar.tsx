@@ -159,6 +159,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
  useEffect(() => {
   if (pathname.includes("student-table-content")) {
     setOpen(false);
+  }else{
+    setOpen(true)
   }
 }, [pathname]);
 
