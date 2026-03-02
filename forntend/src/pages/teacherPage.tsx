@@ -3,6 +3,7 @@ import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import type { ChartConfig } from "@/components/ui/chart";
 import data from "./data.json"
+
 import chartData from "./sampleDatas/chartData.json";
 
 const chartConfig = {
@@ -26,7 +27,7 @@ export default function TeacherPage() {
     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
         <SectionCards />
         <div className="px-4 lg:px-6">
-          <ChartAreaInteractive chartConfig={chartConfig} chartDataConfig={chartDataConfig} chartData={chartData} />
+          <ChartAreaInteractive chartConfig={chartConfig} chartData={chartData} chartDataConfig={chartDataConfig}/>
         </div>
         <DataTable data={data} />
     </div>

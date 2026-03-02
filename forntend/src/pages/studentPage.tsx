@@ -3,11 +3,11 @@ import { ChartRadarDots } from "@/components/chart-radar-dots"
 import { SectionCards } from "@/components/section-cards"
 
 
-// import data from "./data.json"
 
-import data from "./sampleDatas/subjectCardData.json";
 import chartData from "./sampleDatas/chartData.json";
 import type { ChartConfig } from "@/components/ui/chart";
+
+import subjectData from "./sampleDatas/subjectCardData.json";
 
 const chartConfig = {
   visitors: {
@@ -38,7 +38,7 @@ export default function StudentPage() {
         </div>
       </div>
 
-      <SectionCards  data={data}/>
+      <SectionCards  subjectData={subjectData}/>
 
     </div>  
             
