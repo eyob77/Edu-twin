@@ -20,7 +20,7 @@ function App() {
 
             <Route path="/student-dashbored" element={<StudentPage />} />
             <Route path="/student-table-content/:subject" element={<SubjectTableOfContent />} />
-            <Route path="/student-study" element={<StudentStudyPage />} />
+            <Route path="/student-study/:content" element={<StudentStudyPage />} />
 
 
             <Route path="/teacher-dashbored" element={<TeacherPage />} />

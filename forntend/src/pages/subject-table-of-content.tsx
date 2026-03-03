@@ -1,6 +1,9 @@
 import { ChartRadialText } from "@/components/chart-radial-text"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { GalleryVerticalEnd } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import items from "./sampleDatas/tableOfContent.json";
 
 // const items = [
 //   {
@@ -60,7 +63,7 @@ import { GalleryVerticalEnd } from "lucide-react";
 // ]
 interface AccordionNode {
   value: string;
-  trigger: string;
+  title: string;
   content?: string;
   children?: AccordionNode[];
 }
@@ -69,103 +72,7 @@ interface RecursiveAccordionProps {
   items: AccordionNode[];
   level?: number;
 }
-const items: AccordionNode[] = [
-  {
-    value: "integration1",
-    trigger: "What integrations do you support?1",
-    content: "",
-    children: [
-      {
-        value: "integration1.1",
-        trigger: "What integrations do you support?1.1",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-      {
-        value: "integration1.2",
-        trigger: "What integrations do you support?1.2",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-    ],
-  },
-  {
-    value: "integration2",
-    trigger: "What integrations do you support?2",
-    content: "",
-    children: [
-      {
-        value: "integration2.1",
-        trigger: "What integrations do you support?2.1",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-      {
-        value: "integration2.2",
-        trigger: "What integrations do you support?2.2",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-    ],
-  },
-  {
-    value: "integration3",
-    trigger: "What integrations do you support?3",
-    content: "",
-    children: [
-      {
-        value: "integration3.1",
-        trigger: "What integrations do you support?3.1",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-      {
-        value: "integration3.2",
-        trigger: "What integrations do you support?3.2",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-    ],
-  },
-  {
-    value: "integration4",
-    trigger: "What integrations do you support?4",
-    content: "",
-    children: [
-      {
-        value: "integration4.1",
-        trigger: "What integrations do you support?4.1",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-      {
-        value: "integration4.2",
-        trigger: "What integrations do you support?4.2",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-    ],
-  },
-  {
-    value: "integration5",
-    trigger: "What integrations do you support?5",
-    content: "",
-    children: [
-      {
-        value: "integration5.1",
-        trigger: "What integrations do you support?5.1",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-      {
-        value: "integration5.2",
-        trigger: "What integrations do you support?5.2",
-        content:
-          "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-      },
-    ],
-  },
-];
+
 
 
 
@@ -219,24 +126,33 @@ export function RecursiveAccordion({
           value={item.value}
           className={`border-b last:border-b-0 pl-${level * 4}`}
         >
-          <AccordionTrigger> 
-            <span className="font-medium text-xl">{item.trigger}</span>
-          </AccordionTrigger>
 
-          <AccordionContent>
-            {item.content && (
-              <p className="text-sm text-muted-foreground mb-2">
-                {item.content}
-              </p>
-            )}
-
-            {item.children && item.children.length > 0 && (
+        {item.children && item.children.length > 0 ? (
+          <>
+            <AccordionTrigger>
+              <span className={`font-medium ${level === 0 ?'':'text-sm'} ${level === 0 ? 'text-primary' : 'text-muted-foreground'}`}>{item.title}</span>
+            </AccordionTrigger>
+            <AccordionContent>
               <RecursiveAccordion
                 items={item.children}
                 level={level + 1}
               />
-            )}
-          </AccordionContent>
+            </AccordionContent>
+          </>
+     
+            ):
+            item.content && (
+              <div className="w-full h-full py-2 flex items-center">
+
+              <p className="text-sm text-muted-foreground mb-2">
+                <Link to={`/student-study/${item.content}`} className="text-primary hover:underline">
+                  {item.content}
+                </Link>
+              </p>
+              </div>
+            )
+          
+          }
         </AccordionItem>
       ))}
     </Accordion>
