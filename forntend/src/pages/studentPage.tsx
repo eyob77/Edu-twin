@@ -38,7 +38,10 @@ export default function StudentPage() {
         </div>
       </div>
 
-      <SectionCards  subjectData={subjectData}/>
+      <SectionCards  
+        subjectData={subjectData}
+        to={"student-table-content"}
+      />
 
     </div>  
             

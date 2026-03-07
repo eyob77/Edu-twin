@@ -10,11 +10,15 @@ import {
 } from "@/components/ui/card"
 import { Link } from "react-router-dom"
 
-export function SectionCards({subjectData}:any) {
+export function SectionCards({subjectData,to}:any) {
+
+  
+
+
   return (
     <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       {subjectData?.map((item:any,index:number) => (
-        <Link to={`/student-table-content/${item.title}`} key={index}>
+        <Link to={`/${to}/${item.title}`} key={index}>
           <Card className="@container/card" >
           <CardHeader>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">

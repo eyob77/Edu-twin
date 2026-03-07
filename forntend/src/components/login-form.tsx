@@ -15,11 +15,42 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import { useAuthStore } from "@/store/useAuthStore"
+import { useNavigate } from "react-router-dom"
 
 export function LoginForm({
   className,
   ...props
+
 }: React.ComponentProps<"div">) {
+  const navigate = useNavigate()
+  const {login} = useAuthStore();
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+
+  const handleSubmit=async(e:React.FormEvent)=>{
+    e.preventDefault()
+    await login(email,password)
+    // console.log(email,password);
+    const currentUserRole = useAuthStore.getState().user?.role
+
+    switch(currentUserRole){
+      case "student":
+        navigate("/student-dashboard");
+        break
+      case "teacher":
+        navigate("/teacher-dashbored");
+        break
+      case "admin":
+        navigate("/admin-dashbored");
+        break
+    }
+    setEmail("")
+    setPassword("")
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -30,7 +61,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
                 <Button variant="outline" type="button">
@@ -61,6 +92,8 @@ export function LoginForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                   required
                 />
               </Field>
@@ -74,7 +107,13 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  required 
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
+                />
               </Field>
               <Field>
                 <Button type="submit">Login</Button>
