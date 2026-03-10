@@ -11,6 +11,9 @@ import LoginPage from "./pages/loginPage"
 import { Toaster } from "./components/ui/sonner"
 import { ProtectedRoute } from "./routes/protectedRoute"
 import NotFoundPage from "./routes/notFound"
+import AssignmentListPage from "./pages/assignmentListPage"
+import AssignmentDetailPage from "./pages/assignmentDetailPage"
+import AssignmentContentPage from "./pages/assignmentContentPage"
 
 
 
@@ -58,9 +61,21 @@ function App() {
 
             <Route path="/assignments-list/:subject" element={
               <ProtectedRoute allowedRoles={["student"]}>
-                <p>list</p>
+                <AssignmentListPage/>
               </ProtectedRoute>
               } />
+            <Route path="/assignments-detail" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <AssignmentDetailPage/>
+              </ProtectedRoute>
+              } />
+            <Route path="/assignments-content" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <AssignmentContentPage/>
+              </ProtectedRoute>
+              } />
+
+
             <Route path="/student-leaderboard" element={
               <ProtectedRoute allowedRoles={["student"]}>
                 <p>hi leaderboared</p>

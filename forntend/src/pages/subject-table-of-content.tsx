@@ -5,62 +5,6 @@ import { Link } from "react-router-dom";
 
 import items from "./sampleDatas/tableOfContent.json";
 
-// const items = [
-//   {
-//     value: "billing",
-//     trigger: "How does billing work?",
-//     content:
-//       "We offer monthly and annual subscription plans. Billing is charged at the beginning of each cycle, and you can cancel anytime. All plans include automatic backups, 24/7 support, and unlimited team members.",
-//   },
-//   {
-//     value: "security",
-//     trigger: "Is my data secure?",
-//     content:
-//       "Yes. We use end-to-end encryption, SOC 2 Type II compliance, and regular third-party security audits. All data is encrypted at rest and in transit using industry-standard protocols.",
-//   },
-//   {
-//     value: "integration",
-//     trigger: "What integrations do you support?",
-//     content:
-//       "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-//   },
-//   {
-//     value: "integration2",
-//     trigger: "What integrations do you support?2",
-//     content:
-//       "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-//   },
-//   {
-//     value: "integration3",
-//     trigger: "What integrations do you support?3",
-//     content:[
-
-//       {
-//         subaValue:"integration3.1",
-//         subTrigger:"What integrations do you support?3.1",
-//         suContent:"We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks."
-//       },
-//       {
-//         subaValue:"integration4.1",
-//         subTrigger:"What integrations do you support?4.1",
-//         suContent:"We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks."
-//       },
-//     ]
-//   },
-//   {
-//     value: "integration4",
-//     trigger: "What integrations do you support?4",
-//     content:
-//       "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-//   },
-//   {
-//     value: "integration5",
-//     trigger: "What integrations do you support?5",
-//     content:
-//       "We integrate with 500+ popular tools including Slack, Zapier, Salesforce, HubSpot, and more. You can also build custom integrations using our REST API and webhooks.",
-//   },
- 
-// ]
 interface AccordionNode {
   value: string;
   title: string;

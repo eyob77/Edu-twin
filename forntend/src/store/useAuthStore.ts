@@ -29,14 +29,18 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: async (email, password) => {
     try {
-      set({ loading: true, error: null })
+      set({ loading: true, error: null });
+      console.log("hi login")
 
       const response = await api.post("/users/login", {
         email,
         password,
       })
+      console.log(response)
+      
 
-      const { token, user ,message } = response.data
+      const { token, user ,message } = response.data;
+      console.log(user)
 
       // Save to localStorage
       localStorage.setItem("token", token)

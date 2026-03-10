@@ -25,7 +25,7 @@ export function LoginForm({
 
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate()
-  const {login} = useAuthStore();
+  const {login,loading} = useAuthStore();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
@@ -116,7 +116,9 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit" disabled={loading}>
+                  {loading?"Loading...":"Login"}
+                </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="#">Sign up</a>
                 </FieldDescription>
