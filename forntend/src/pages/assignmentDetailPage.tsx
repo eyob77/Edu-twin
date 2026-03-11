@@ -1,5 +1,5 @@
-import { ArrowLeft, ArrowRight, Clock, Target, User, FileText, AlertCircle, Download, CheckCircle2 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { ArrowLeft, ArrowRight, Clock, Target, User, FileText, AlertCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -28,8 +28,11 @@ const AssignmentDetailPage = () => {
                 Newtonian Mechanics <br />Problem Set
               </h1>
             </header>
+            <div>
+              
+            </div>
 
-            <Card className="border-none shadow-sm bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden">
+            <Card className="border shadow-sm bg-white dark:bg-zinc-900 rounded-lg overflow-hidden">
               <CardHeader className="p-8 pb-4">
                 <CardTitle className="flex items-center gap-2 text-xl italic font-serif">
                   <FileText className="h-5 w-5 text-primary not-italic" /> Assignment Overview
@@ -39,24 +42,18 @@ const AssignmentDetailPage = () => {
                 <p className="text-lg leading-relaxed">
                   This problem set focuses on the application of Newton's three laws of motion in various physical scenarios. You will calculate force vectors, determine acceleration, and analyze tension in pulleys.
                 </p>
-                <div className="bg-slate-50 dark:bg-zinc-800/50 p-6 rounded-2xl border-l-4 border-primary space-y-3">
+                <div className="bg-slate-50 dark:bg-zinc-800/50 p-6 rounded-lg border-l-4 border-primary space-y-3">
                   <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2 italic">
                     <AlertCircle className="h-4 w-4 text-primary not-italic" /> Required Materials
                   </h4>
                   <p className="text-sm">Please ensure you have your scientific calculator and a way to sketch free-body diagrams.</p>
                 </div>
               </CardContent>
-              <CardFooter className="border-t bg-slate-50/30 dark:bg-zinc-800/20 px-8 py-6">
-                <Button variant="outline" className="gap-2 bg-white dark:bg-zinc-900 rounded-xl">
-                  <Download className="h-4 w-4" /> Download Reference Sheet
-                </Button>
-              </CardFooter>
             </Card>
           </div>
 
           <div className="space-y-6">
-            <Card className="border-2 border-primary/10 shadow-xl rounded-3xl overflow-hidden bg-white dark:bg-zinc-900">
-              <div className="h-2 bg-primary w-full" />
+            <Card className="border-2 border-primary/10 shadow-xl rounded-lg overflow-hidden bg-white dark:bg-zinc-900">
               <CardHeader className="p-6">
                 <CardTitle className="text-lg">Submission Details</CardTitle>
               </CardHeader>
@@ -67,21 +64,13 @@ const AssignmentDetailPage = () => {
                   <DetailRow icon={<User className="h-4 w-4" />} label="Instructor" value="Dr. Aris Thorne" />
                 </div>
                 <Separator />
-                <Button size="lg" className="w-full py-7 text-lg font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all rounded-2xl" onClick={() => navigate('/assignments-content')}>
+                <Button className="w-full py-7 text-lg font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all rounded-normal" onClick={() => navigate('/assignments-content')}>
                   Start Assignment <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <p className="text-[11px] text-center text-muted-foreground italic">Progress is saved automatically upon starting.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 dark:bg-zinc-900 text-white border-none rounded-3xl overflow-hidden">
-              <CardHeader className="p-6"><CardTitle className="text-xs font-bold uppercase tracking-widest text-slate-400">Grading Rubric</CardTitle></CardHeader>
-              <CardContent className="p-6 pt-0 space-y-4">
-                <RubricItem label="Mathematical Accuracy" points="60" />
-                <RubricItem label="Free-Body Diagrams" points="20" />
-                <RubricItem label="Clarity & Logic" points="20" />
-              </CardContent>
-            </Card>
           </div>
         </main>
       </div>
@@ -96,11 +85,6 @@ const DetailRow = ({ icon, label, value }: any) => (
   </div>
 );
 
-const RubricItem = ({ label, points }: any) => (
-  <div className="flex justify-between items-center group cursor-default text-sm">
-    <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> <span>{label}</span></div>
-    <span className="font-bold text-primary">{points} pts</span>
-  </div>
-);
+
 
 export default AssignmentDetailPage

@@ -24,38 +24,29 @@ export default function AssignmentListPage(){
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8">
           <div className="space-y-2">
-            <Button variant="ghost" size="sm" className="pl-0 hover:bg-transparent text-muted-foreground group">
+            <Button variant="ghost" size="sm" className="pl-0 hover:text-primary transition-colors text-muted-foreground group">
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
               Back to Subjects
             </Button>
             <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Physics Assignments</h1>
             <p className="text-lg text-muted-foreground italic">Course Instructor: Dr. Aris Thorne</p>
           </div>
-          <div className="flex items-center gap-4 bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-sm border">
-            <div className="text-right hidden sm:block">
-              <p className="text-sm font-semibold">Course Progress</p>
-              <p className="text-xs text-muted-foreground">8 of 12 assignments finished</p>
-            </div>
-            <div className="h-12 w-12 rounded-full border-4 border-primary border-t-transparent flex items-center justify-center font-bold text-sm text-primary">
-              85%
-            </div>
-          </div>
         </div>
 
         {/* Tabs System */}
         <Tabs defaultValue="all" className="w-full">
           <div className="flex flex-col xl:flex-row justify-between items-center gap-6 mb-8">
-            <TabsList className="h-12 p-1 bg-slate-200/60 dark:bg-zinc-800 backdrop-blur-sm rounded-xl">
-              <TabsTrigger value="all" className="px-8 text-sm font-medium rounded-lg">All Tasks ({assignments.length})</TabsTrigger>
-              <TabsTrigger value="pending" className="px-8 text-sm font-medium rounded-lg">Pending ({pendingAssignments.length})</TabsTrigger>
-              <TabsTrigger value="completed" className="px-8 text-sm font-medium rounded-lg">Completed ({completedAssignments.length})</TabsTrigger>
+            <TabsList className="h-12 p-1 bg-slate-200/60 dark:bg-zinc-800 backdrop-blur-sm rounded-lg border">
+              <TabsTrigger value="all" className="px-8 text-sm font-medium rounded-normal">All Tasks ({assignments.length})</TabsTrigger>
+              <TabsTrigger value="pending" className="px-8 text-sm font-medium rounded-normal">Pending ({pendingAssignments.length})</TabsTrigger>
+              <TabsTrigger value="completed" className="px-8 text-sm font-medium rounded-normal">Completed ({completedAssignments.length})</TabsTrigger>
             </TabsList>
 
             <div className="flex items-center gap-3 w-full xl:w-auto justify-end">
-              <Button variant="outline" size="sm" className="bg-white dark:bg-zinc-900 rounded-lg">
+              <Button variant="outline" size="sm" className="bg-white dark:bg-zinc-900 rounded-normal">
                 <ListFilter className="mr-2 h-4 w-4" /> Sort
               </Button>
-              <Button variant="outline" size="sm" className="bg-white dark:bg-zinc-900 rounded-lg">
+              <Button variant="outline" size="sm" className="bg-white dark:bg-zinc-900 rounded-normal">
                 <LayoutGrid className="mr-2 h-4 w-4" /> Layout
               </Button>
             </div>
@@ -88,7 +79,7 @@ const AssignmentGrid = ({ data }: { data: any[] }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
       {data.map((assignment) => (
-        <Card key={assignment.id} className="group border-none shadow-sm hover:shadow-xl transition-all duration-300 bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden">
+        <Card key={assignment.id} className="group border shadow-sm hover:shadow-xl transition-all duration-300 bg-white dark:bg-zinc-900 rounded-lg overflow-hidden">
           <CardContent className="p-6 space-y-6">
             <div className="flex justify-between items-start">
               <div className="bg-primary/10 p-3 rounded-2xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
