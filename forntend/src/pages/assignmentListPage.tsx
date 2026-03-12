@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useNavigate } from 'react-router-dom';
 
 export default function AssignmentListPage(){
+  const navigate = useNavigate();
   const assignments = [
     { id: 1, title: "Newtonian Mechanics Problem Set", dueDate: "Oct 24, 2026", status: "Pending", type: "Problem Set", points: 100 },
     { id: 2, title: "Electromagnetism Lab Report", dueDate: "Oct 20, 2026", status: "Submitted", type: "Lab", points: 50 },
@@ -20,11 +21,11 @@ export default function AssignmentListPage(){
 
   return (
     <div className="w-full min-h-screen bg-slate-50/50 dark:bg-zinc-950 p-6 md:p-10 lg:p-14 space-y-10">
-      <div className="max-w-350 mx-auto space-y-10">
+      <div className="max-w-350 mx-auto space-y-10">  
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b pb-8">
           <div className="space-y-2">
-            <Button variant="ghost" size="sm" className="pl-0 hover:text-primary transition-colors text-muted-foreground group">
+            <Button variant="ghost" size="sm" className="pl-0 hover:text-primary transition-colors text-muted-foreground group" onClick={() => navigate(-1)} >
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
               Back to Subjects
             </Button>
