@@ -1,8 +1,5 @@
-import React from "react";
 import { 
   Card, 
-  CardContent, 
-  CardHeader, 
   CardTitle, 
   CardDescription 
 } from "@/components/ui/card";
@@ -14,7 +11,6 @@ import {
   Clock, 
   BookOpen, 
   ArrowLeft, 
-  BarChart3,
   CheckCircle2,
   XCircle,
   FileText,
