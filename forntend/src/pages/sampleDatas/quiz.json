@@ -6,7 +6,7 @@
     "durationMinutes": 30,
     "totalQuestions": 5,
     "passingScore": 70,
-    "isCompleted":true
+    "isCompleted":false
   },
   "questions": [
     {

@@ -1,11 +1,7 @@
-import React from "react";
 import { 
   Card, 
-  CardContent, 
   CardDescription, 
-  CardHeader, 
   CardTitle, 
-  CardFooter 
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,7 +15,6 @@ import {
   ArrowLeft, 
   PlayCircle,
   BarChart3,
-  CheckCircle2,
   FileText,
   ShieldCheck
 } from "lucide-react";
