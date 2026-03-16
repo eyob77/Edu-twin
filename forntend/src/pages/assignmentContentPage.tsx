@@ -145,7 +145,7 @@ const ProblemSection = ({ number, title, points, children }: any) => (
          <Button variant="outline" size="sm" className="rounded-normal font-bold text-[11px] px-5 py-5 hover:border-primary transition-all gap-2 bg-transparent">
            <StickyNote className="h-4 w-4" /> Add Note
          </Button>
-         <div className="flex-1 min-w-[20px]" />
+         <div className="flex-1 min-w-5" />
          <Button variant="ghost" size="sm" className="rounded-xl font-bold text-[11px] px-5 py-5 text-primary hover:bg-primary/5 gap-2">
            <HelpCircle className="h-4 w-4" /> Ask AI Hint
          </Button>

@@ -1,0 +1,78 @@
+{
+  "quizId": "optics-101-teacher",
+  "title": "Light & Optics: Refraction & Lenses",
+  "instructor": "Dr. Smith",
+  "config": {
+    "durationMinutes": 30,
+    "totalQuestions": 5,
+    "passingScore": 70,
+    "isCompleted":true
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple-choice",
+      "question": "When light passes from air into a glass block, what happens to its speed?",
+      "options": [
+        "It increases",
+        "It decreases",
+        "It stays the same",
+        "It doubles"
+      ],
+      "correctAnswer": "It decreases",
+      "explanation": "Light travels slower in denser mediums like glass ($n \\approx 1.5$) compared to air ($n \\approx 1.0$)."
+    },
+    {
+      "id": "q2",
+      "type": "interactive-simulation",
+      "question": "Adjust the focal length of the convex lens in the simulation to 10cm. If an object is placed at 20cm, what is the nature of the image?",
+      "canvasState": {
+        "simulationType": "optics",
+        "initialFocalLength": 10,
+        "objectPosition": 20
+      },
+      "options": [
+        "Virtual and Upright",
+        "Real and Inverted",
+        "No image is formed",
+        "Real and Upright"
+      ],
+      "correctAnswer": "Real and Inverted",
+      "explanation": "At $2F$, a convex lens produces a real, inverted image of the same size."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "question": "Which phenomenon is responsible for the formation of a rainbow?",
+      "options": [
+        "Reflection only",
+        "Interference",
+        "Dispersion and Internal Reflection",
+        "Diffraction"
+      ],
+      "correctAnswer": "Dispersion and Internal Reflection",
+      "explanation": "White light is split into colors (dispersion) and reflected inside water droplets."
+    },
+    {
+      "id": "q4",
+      "type": "true-false",
+      "question": "A concave lens can form a real image if the object is placed beyond the focal point.",
+      "options": ["True", "False"],
+      "correctAnswer": "False",
+      "explanation": "Concave (diverging) lenses always produce virtual, upright, and diminished images."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "question": "Calculate the refractive index of a medium if the speed of light in it is $2.0 \times 10^8$ m/s.",
+      "options": [
+        "1.2",
+        "1.5",
+        "1.33",
+        "2.0"
+      ],
+      "correctAnswer": "1.5",
+      "explanation": "Refractive index $n = c / v$. Given $c = 3.0 \times 10^8$ and $v = 2.0 \times 10^8$, $n = 1.5$."
+    }
+  ]
+}

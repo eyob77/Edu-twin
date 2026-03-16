@@ -14,6 +14,11 @@ import NotFoundPage from "./routes/notFound"
 import AssignmentListPage from "./pages/assignmentListPage"
 import AssignmentDetailPage from "./pages/assignmentDetailPage"
 import AssignmentContentPage from "./pages/assignmentContentPage"
+import QuizPage from "./pages/quizPage"
+import QuizDashboard from "./pages/quizListPage"
+import AssessmentGateway from "./pages/quizContentPage"
+import QuizSession from "./pages/quizSessionPage"
+import ReviewResults from "./pages/quizResultReview"
 
 
 
@@ -48,7 +53,31 @@ function App() {
             <Route path="/student-quiz" element={
               <ProtectedRoute allowedRoles={["student"]}>
 
-                <p>hi quiz</p>
+                <QuizPage/>
+              </ProtectedRoute>
+            } />
+            <Route path="/quiz-list/:subject" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+
+                <QuizDashboard/>
+              </ProtectedRoute>
+            } />
+            <Route path="/quiz-session" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+
+                <QuizSession/>
+              </ProtectedRoute>
+            } />
+            <Route path="/quiz-review" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+
+                <ReviewResults/>
+              </ProtectedRoute>
+            } />
+            <Route path="/quiz-content" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+
+                <AssessmentGateway/>
               </ProtectedRoute>
             } />
 
