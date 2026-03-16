@@ -1,3 +1,4 @@
+import React from "react";
 import { 
   Card, 
   CardContent, 
@@ -18,119 +19,171 @@ import {
   ArrowLeft, 
   PlayCircle,
   BarChart3,
-  CheckCircle2
+  CheckCircle2,
+  FileText,
+  ShieldCheck
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Using the data structure from your sample
 import quizData from "./sampleDatas/quiz.json";
 
 export default function AssessmentGateway() {
   const navigate = useNavigate();
   const isCompleted = quizData.config.isCompleted;
-  const score = 85; // Placeholder for actual user score
+  const score = 85; 
 
   return (
-    <div className="p-8 max-w-3xl mx-auto flex flex-col justify-center min-h-[80vh]">
-      <div className="mb-6">
+    <div className="p-8 w-full mx-auto animate-in fade-in duration-700">
+      {/* Top Navigation */}
+      <div className="mb-6 flex items-center justify-between">
         <Button 
           variant="ghost" 
           size="sm" 
-          className="gap-2 text-muted-foreground hover:text-foreground mb-4"
+          className="gap-2 text-muted-foreground hover:text-foreground"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="w-4 h-4" /> Back to Assessments
         </Button>
+        <Badge variant="outline" className="px-3 py-1 font-mono uppercase tracking-tighter">
+          System ID: {quizData.quizId}
+        </Badge>
       </div>
 
-      <Card className="flex flex-col border rounded-lg shadow-sm">
-        <CardHeader>
-          <div className="flex justify-between items-start mb-4">
-            <Badge variant={isCompleted ? "secondary" : "default"} className="border">
-              {isCompleted ? "Completed" : "Action Required"}
-            </Badge>
-            <span className="text-xs text-muted-foreground flex items-center gap-1">
-              <Calendar className="w-3 h-3" /> Deadline: Oct 25, 2026
-            </span>
+      <Card className="flex flex-col border rounded-lg shadow-md overflow-hidden bg-white">
+        {/* Decorative Header Bar */}
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          {/* LEFT COLUMN: Main Info (8 Columns) */}
+          <div className="lg:col-span-8 p-8 border-r border-slate-100">
+            <div className="flex justify-between items-start mb-6">
+              <div className="space-y-1">
+                <Badge variant={isCompleted ? "secondary" : "default"} className="mb-2">
+                  {isCompleted ? "Completed" : "Action Required"}
+                </Badge>
+                <CardTitle className="text-4xl font-black tracking-tight text-slate-900">
+                  {quizData.title}
+                </CardTitle>
+                <CardDescription className="text-lg font-medium flex items-center gap-2">
+                  <FileText className="w-4 h-4" /> Instructor: {quizData.instructor}
+                </CardDescription>
+              </div>
+            </div>
+
+            <Separator className="my-8" />
+
+            <div className="grow">
+              {isCompleted ? (
+                /* --- FULL WIDTH VIEW SCORE --- */
+                <div className="space-y-8 animate-in slide-in-from-left-4 duration-500">
+                  <div className="flex items-end justify-between">
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Your Performance</p>
+                      <h2 className="text-7xl font-black text-primary tracking-tighter">{score}%</h2>
+                    </div>
+                    <div className="text-right hidden sm:block">
+                      <Badge className="bg-green-100 text-green-700 hover:bg-green-100 border-none px-4 py-1 text-sm">
+                        Passing Grade: 70%
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm font-bold">
+                      <span className="flex items-center gap-2 text-muted-foreground">
+                         <BarChart3 className="w-4 h-4" /> Mastery Level
+                      </span>
+                      <span>{score}/100</span>
+                    </div>
+                    <Progress value={score} className="h-3 rounded-full bg-slate-100" />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                    {[
+                      { label: "Time Taken", val: "24:12", icon: Clock },
+                      { label: "Questions", val: quizData.questions.length, icon: BookOpen },
+                      { label: "Status", val: "Passed", icon: ShieldCheck }
+                    ].map((item, i) => (
+                      <div key={i} className="bg-slate-50 border rounded-xl p-4 flex items-center gap-3">
+                        <item.icon className="w-5 h-5 text-primary" />
+                        <div>
+                          <p className="text-[10px] uppercase font-bold text-muted-foreground">{item.label}</p>
+                          <p className="font-bold">{item.val}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                /* --- FULL WIDTH TAKE QUIZ --- */
+                <div className="space-y-8">
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="p-6 border-2 rounded-2xl flex items-center gap-5">
+                         <div className="p-3 bg-white rounded-xl shadow-sm"><Clock className="w-8 h-8 text-primary" /></div>
+                         <div>
+                            <p className="text-xs font-bold text-muted-foreground uppercase">Allocated Time</p>
+                            <p className="text-2xl font-black">{quizData.config.durationMinutes} Minutes</p>
+                         </div>
+                      </div>
+                      <div className="p-6 border-2 border-slate-50 rounded-2xl bg-slate-50/30 flex items-center gap-5">
+                         <div className="p-3 bg-white rounded-xl shadow-sm"><BookOpen className="w-8 h-8 text-primary" /></div>
+                         <div>
+                            <p className="text-xs font-bold text-muted-foreground uppercase">Assessment Items</p>
+                            <p className="text-2xl font-black">{quizData.questions.length} Questions</p>
+                         </div>
+                      </div>
+                   </div>
+
+                   <div className="p-6 bg-amber-50 border border-amber-100 rounded-2xl flex gap-5 items-start">
+                      <AlertCircle className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
+                      <div className="space-y-2">
+                        <h4 className="font-bold text-amber-900 uppercase text-xs tracking-widest">Academic Integrity & Sync</h4>
+                        <p className="text-sm text-amber-800 leading-relaxed">
+                          By starting this assessment, you agree to the proctoring rules. The AI agent will monitor interaction patterns to ensure a fair environment. **No pauses allowed.**
+                        </p>
+                      </div>
+                   </div>
+                </div>
+              )}
+            </div>
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">{quizData.title}</CardTitle>
-          <CardDescription className="text-base">
-            Instructor: {quizData.instructor}
-          </CardDescription>
-        </CardHeader>
 
-        <CardContent className="space-y-6">
-          {isCompleted ? (
-            /* --- VIEW SCORE PATH --- */
-            <div className="space-y-6 animate-in fade-in duration-500">
-              <div className="p-6 bg-slate-50 border rounded-xl flex flex-col items-center justify-center text-center">
-                <div className="bg-green-100 p-3 rounded-full mb-3">
-                  <CheckCircle2 className="w-8 h-8 text-green-600" />
+          {/* RIGHT COLUMN: Action & Sidebar (4 Columns) */}
+          <div className="lg:col-span-4 bg-slate-50/50 p-8 flex flex-col justify-between border-l border-slate-100">
+             <div className="space-y-6">
+                <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                  <Calendar className="w-4 h-4" /> Schedule Detail
                 </div>
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Your Final Score</p>
-                <h2 className="text-5xl font-bold text-primary mt-1">{score}%</h2>
+                <div className="space-y-4">
+                   <div className="flex justify-between items-center text-sm">
+                      <span className="text-muted-foreground">Due Date</span>
+                      <span className="font-bold">Oct 25, 2026</span>
+                   </div>
+                   <div className="flex justify-between items-center text-sm">
+                      <span className="text-muted-foreground">Type</span>
+                      <span className="font-bold">Teacher-Hosted</span>
+                   </div>
+                   <Separator />
+                </div>
                 
-                <div className="w-full max-w-xs mt-6 space-y-2">
-                  <Progress value={score} className="h-2" />
-                  <p className="text-xs text-muted-foreground italic">
-                    Successfully submitted via EdTwin
-                  </p>
-                </div>
-              </div>
-            </div>
-          ) : (
-            /* --- TAKE QUIZ PATH --- */
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 border rounded-lg bg-card">
-                  <Clock className="w-5 h-5 text-muted-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground font-bold uppercase">Duration</p>
-                    <p className="font-semibold">{quizData.config.durationMinutes} mins</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 border rounded-lg bg-card">
-                  <BookOpen className="w-5 h-5 text-muted-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground font-bold uppercase">Structure</p>
-                    <p className="font-semibold">{quizData.questions.length} Questions</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-3 p-4 border rounded-lg bg-amber-50/50 border-amber-100">
-                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0" />
-                <p className="text-sm text-amber-800 leading-relaxed">
-                  Once started, the timer cannot be paused. Please ensure your 
-                  connection is stable to allow the AI agent to sync your progress.
+                <p className="text-xs text-muted-foreground leading-relaxed italic">
+                  "Ensure your HTML5 Canvas environment is initialized before beginning the simulation portions of this test."
                 </p>
-              </div>
-            </div>
-          )}
-        </CardContent>
+             </div>
 
-        <Separator className="mb-6 mx-6 w-auto" />
-
-        <CardFooter className="pb-8 px-6">
-          <Button 
-            className="w-full gap-2 h-12 text-lg shadow-sm" 
-            variant={isCompleted ? "outline" : "default"}
-            onClick={() => {
-                if(!isCompleted) navigate("/quiz-session");
-                else navigate("/quiz-review");
-            }}
-          >
-            {isCompleted ? (
-              <>
-                <BarChart3 className="w-5 h-5" /> Review Results
-              </>
-            ) : (
-              <>
-                <PlayCircle className="w-5 h-5" /> Start Assessment
-              </>
-            )}
-          </Button>
-        </CardFooter>
+             <Button 
+                className="w-full gap-3 h-16 text-xl font-black shadow-lg transition-all active:scale-[0.97] mt-8" 
+                variant={isCompleted ? "outline" : "default"}
+                onClick={() => isCompleted ? navigate("/quiz-review") : navigate("/quiz-session")}
+              >
+                {isCompleted ? (
+                  <><BarChart3 className="w-6 h-6" /> Review Result</>
+                ) : (
+                  <><PlayCircle className="w-6 h-6" /> Start Quiz</>
+                )}
+              </Button>
+          </div>
+        </div>
       </Card>
     </div>
   );
