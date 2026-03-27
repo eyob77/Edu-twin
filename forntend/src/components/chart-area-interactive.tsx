@@ -70,12 +70,12 @@ export function ChartAreaInteractive({ chartData, chartConfig ,chartDataConfig}:
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Total Performance</CardTitle>
+        <CardTitle>Learning Performance</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            Progress over your selected learning period
           </span>
-          <span className="@[540px]/card:hidden">Last 3 months</span>
+          <span className="@[540px]/card:hidden">Performance trend</span>
         </CardDescription>
         <CardAction>
           <ToggleGroup
@@ -111,10 +111,10 @@ export function ChartAreaInteractive({ chartData, chartConfig ,chartDataConfig}:
           </Select>
         </CardAction>
       </CardHeader>
-      <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+      <CardContent className="px-2 pt-3 sm:px-6 sm:pt-4">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-62.5 w-full"
+          className="aspect-auto h-60 w-full"
         >
           <AreaChart data={filteredData}>
             <defs>

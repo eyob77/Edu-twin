@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   BookOpen
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 const questions = [
   { id: 1, type: "multiple-choice", text: "What is the refractive index of water?", options: ["1.00", "1.33", "1.50", "2.42"] },
@@ -28,9 +29,13 @@ const questions = [
 ];
 
 export default function QuizSession() {
+  const [searchParams] = useSearchParams();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [flags, setFlags] = useState<number[]>([]);
   const [answers, setAnswers] = useState<Record<number, string>>({});
+
+  const selectedSubject = searchParams.get("subject") || "Physics";
+  const quizId = searchParams.get("quizId") || "live-quiz";
 
   const currentQuestion = questions[currentIdx];
   const answeredCount = Object.keys(answers).length;
@@ -52,8 +57,8 @@ export default function QuizSession() {
     <main className="flex-1 flex flex-col min-w-0 bg-slate-50/50">
         <header className="h-16 border-b bg-white flex items-center justify-between px-8 shrink-0">  
           <div className="p-3 ">
-            <h1 className="text-sm font-black tracking-tight uppercase">Physics Session</h1>
-            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Light & Optics</p>
+            <h1 className="text-sm font-black tracking-tight uppercase">{selectedSubject} Session</h1>
+            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">Quiz ID: {quizId}</p>
           </div>
 
           <div className="flex items-center gap-4">

@@ -25,15 +25,19 @@ export function LoginForm({
 
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate()
-  const {login,loading} = useAuthStore();
+  const { login, loading, error } = useAuthStore();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
 
   const handleSubmit=async(e:React.FormEvent)=>{
     e.preventDefault()
-    await login(email,password)
-    // console.log(email,password);
+    const isLoggedIn = await login(email,password)
+
+    if (!isLoggedIn) {
+      return
+    }
+
     const currentUserRole = useAuthStore.getState().user?.role
 
     switch(currentUserRole){
@@ -119,6 +123,11 @@ export function LoginForm({
                 <Button type="submit" disabled={loading}>
                   {loading?"Loading...":"Login"}
                 </Button>
+                {error && (
+                  <FieldDescription className="text-center text-destructive">
+                    {error}
+                  </FieldDescription>
+                )}
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="#">Sign up</a>
                 </FieldDescription>

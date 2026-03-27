@@ -11,11 +11,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { BookOpen, Calendar, Clock, PlayCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const assessments = [
   {
     id: "1",
+    subject: "Physics",
     title: "Unit 2: Newton's Laws of Motion",
     teacher: "Dr. Smith",
     status: "Active",
@@ -26,6 +27,7 @@ const assessments = [
   },
   {
     id: "2",
+    subject: "Physics",
     title: "Electromagnetism Fundamentals",
     teacher: "Prof. Tsegaye",
     status: "Completed",
@@ -36,6 +38,7 @@ const assessments = [
   },
   {
     id: "3",
+    subject: "Physics",
     title: "Light & Optics Simulation Quiz",
     teacher: "Dr. Smith",
     status: "Upcoming",
@@ -44,21 +47,80 @@ const assessments = [
     questions: 10,
     type: "Simulation-Based",
   },
+  {
+    id: "4",
+    subject: "Math",
+    title: "Algebra: Linear Equations Sprint",
+    teacher: "Ms. Helen",
+    status: "Active",
+    duration: "35 mins",
+    deadline: "Oct 27, 2026",
+    questions: 18,
+    type: "Teacher-Hosted",
+  },
+  {
+    id: "5",
+    subject: "Math",
+    title: "Geometry Checkpoint",
+    teacher: "Ms. Helen",
+    status: "Completed",
+    score: 91,
+    deadline: "Oct 19, 2026",
+    questions: 14,
+    type: "Teacher-Hosted",
+  },
+  {
+    id: "6",
+    subject: "Biology",
+    title: "Cell Structure Challenge",
+    teacher: "Mr. Dawit",
+    status: "Active",
+    duration: "25 mins",
+    deadline: "Oct 26, 2026",
+    questions: 12,
+    type: "Teacher-Hosted",
+  },
+  {
+    id: "7",
+    subject: "Chemistry",
+    title: "Periodic Trends Basics",
+    teacher: "Mrs. Selam",
+    status: "Completed",
+    score: 78,
+    deadline: "Oct 18, 2026",
+    questions: 10,
+    type: "Teacher-Hosted",
+  },
 ];
 
 export default function QuizDashboard() {
   const navigate = useNavigate();
+  const { subject } = useParams();
+  const selectedSubject = decodeURIComponent(subject || "All Subjects");
+
+  const filteredAssessments = selectedSubject === "All Subjects"
+    ? assessments
+    : assessments.filter((assessment) => assessment.subject.toLowerCase() === selectedSubject.toLowerCase());
+
+  const startQuiz = (assessmentId: string, assessmentSubject: string) => {
+    navigate(`/quiz-session?quizId=${assessmentId}&subject=${encodeURIComponent(assessmentSubject)}`);
+  };
+
+  const viewQuizAnalytics = (assessmentId: string, assessmentSubject: string) => {
+    navigate(`/quiz-review?quizId=${assessmentId}&subject=${encodeURIComponent(assessmentSubject)}`);
+  };
+
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Physics Assessments</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{selectedSubject} Quizzes</h1>
         <p className="text-muted-foreground mt-2">
-          Select an assessment assigned by your teacher to begin.
+          Choose a quiz under this subject, then start the attempt or open past analytics.
         </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {assessments.map((assessment) => (
+        {filteredAssessments.map((assessment) => (
           <Card key={assessment.id} className="flex flex-col border rounded-lg hover:border-primary/50 transition-colors">
             <CardHeader>
               <div className="flex justify-between items-start mb-2">
@@ -70,7 +132,7 @@ export default function QuizDashboard() {
                 </span>
               </div>
               <CardTitle className="text-xl">{assessment.title}</CardTitle>
-              <CardDescription>Instructor: {assessment.teacher}</CardDescription>
+              <CardDescription>Instructor: {assessment.teacher} • {assessment.subject}</CardDescription>
             </CardHeader>
 
             <CardContent className="grow">
@@ -105,15 +167,28 @@ export default function QuizDashboard() {
                 className="w-full gap-2" 
                 variant={assessment.status === "Completed" ? "outline" : "default"}
                 disabled={assessment.status === "Upcoming"}
-                onClick={()=>{navigate("/quiz-content")}}
+                onClick={() => {
+                  if (assessment.status === "Completed") {
+                    viewQuizAnalytics(assessment.id, assessment.subject);
+                    return;
+                  }
+
+                  startQuiz(assessment.id, assessment.subject);
+                }}
               >
-                {assessment.status === "Completed" ? "View Results" : "Start Quiz"}
+                {assessment.status === "Completed" ? "View Analytics" : "Start Quiz"}
                 {assessment.status !== "Completed" && <PlayCircle className="w-4 h-4" />}
               </Button>
             </CardFooter>
           </Card>
         ))}
       </div>
+
+      {filteredAssessments.length === 0 && (
+        <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/40 p-6 text-sm text-slate-600">
+          No quizzes found for {selectedSubject} yet. Try another subject.
+        </div>
+      )}
     </div>
   );
 }

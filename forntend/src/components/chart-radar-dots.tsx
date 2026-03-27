@@ -38,9 +38,9 @@ export function ChartRadarDots() {
   return (
     <Card>
       <CardHeader className="items-center">
-        <CardTitle>Subject-performance</CardTitle>
+        <CardTitle>Subject Focus</CardTitle>
         <CardDescription>
-          Showing which subject you perefer the most based on your performance in each subject
+          Snapshot of performance distribution across your core subjects.
         </CardDescription>
       </CardHeader>
       <CardContent className="pb-0">
@@ -66,7 +66,7 @@ export function ChartRadarDots() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          You progressed by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Up 5.2% from last month <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
     </Card>

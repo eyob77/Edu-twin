@@ -19,7 +19,7 @@ import {
   MessageSquare,
   TrendingUp
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // This would typically come from your backend or state
 const mockResults = {
@@ -50,6 +50,9 @@ const mockResults = {
 
 export default function ReviewResults() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedSubject = searchParams.get("subject") || "Physics";
+  const quizId = searchParams.get("quizId") || "previous-attempt";
 
   return (
     <div className="p-6 w-full max-w-7xl mx-auto animate-in fade-in duration-700">
@@ -81,10 +84,10 @@ export default function ReviewResults() {
           <div className="lg:col-span-8 p-8 border-r border-slate-100 overflow-y-auto max-h-[85vh]">
             <div className="space-y-1 mb-8">
               <CardTitle className="text-4xl font-black tracking-tight text-slate-900">
-                Question Review
+                Past Quiz Analytics
               </CardTitle>
               <CardDescription className="text-lg font-medium">
-                Review your answers and learn from the AI-generated explanations.
+                {selectedSubject} • {quizId} • Review your answers and analytics from this past attempt.
               </CardDescription>
             </div>
 
@@ -157,9 +160,25 @@ export default function ReviewResults() {
                     </div>
                     <div className="bg-white border rounded-xl p-4">
                         <TrendingUp className="w-4 h-4 text-primary mb-2" />
-                        <p className="text-[9px] uppercase font-bold text-muted-foreground tracking-widest">Rank</p>
-                        <p className="text-lg font-black">#04</p>
+                        <p className="text-[9px] uppercase font-bold text-muted-foreground tracking-widest">Percentile</p>
+                        <p className="text-lg font-black">Top 18%</p>
                     </div>
+                </div>
+
+                <div className="space-y-2 rounded-xl border border-blue-100 bg-white p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Analytics Summary</p>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-500">Strongest area</span>
+                    <span className="font-semibold text-slate-900">Concept recall</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-500">Needs review</span>
+                    <span className="font-semibold text-slate-900">Applied reasoning</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-500">Accuracy trend</span>
+                    <span className="font-semibold text-emerald-600">+6% vs last attempt</span>
+                  </div>
                 </div>
 
                 {/* Detail List */}

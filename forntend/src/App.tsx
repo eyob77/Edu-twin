@@ -19,6 +19,19 @@ import QuizDashboard from "./pages/quizListPage"
 import AssessmentGateway from "./pages/quizContentPage"
 import QuizSession from "./pages/quizSessionPage"
 import ReviewResults from "./pages/quizResultReview"
+import TeacherQuizPage from "./pages/teacherQuizPage"
+import TeacherAssignmentsPage from "./pages/teacherAssignmentsPage"
+import TeacherLeaderboardPage from "./pages/teacherLeaderboardPage"
+import TeacherAssessmentsPage from "./pages/teacherAssessmentsPage"
+import TeacherContentEditorPage from "./pages/teacherContentEditorPage"
+import StudentCanvasLabPage from "./pages/studentCanvasLabPage"
+import StudentTextbooksPage from "./pages/studentTextbooksPage"
+import StudentPracticeHubPage from "./pages/studentPracticeHubPage"
+import StudentLeaderboardPage from "./pages/studentLeaderboardPage"
+import AdminPage from "./pages/adminPage"
+import AdminUsersPage from "./pages/adminUsersPage"
+import AdminContentReviewPage from "./pages/adminContentReviewPage"
+import AdminSystemSettingsPage from "./pages/adminSystemSettingsPage"
 
 
 
@@ -26,7 +39,7 @@ import ReviewResults from "./pages/quizResultReview"
 function App() {
 
   return (
-    <div className="h-screen w-full">
+    <div className="app-shell w-full">
       <Toaster />
       <Routes>
           {/* make student dash bored reponsive */}
@@ -47,6 +60,26 @@ function App() {
             <Route path="/student-study/:content" element={
               <ProtectedRoute allowedRoles={["student"]}>
                 <StudentStudyPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/student-study/:subject/:chapter/:topic" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <StudentStudyPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/student-textbooks" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <StudentTextbooksPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/student-canvas-lab" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <StudentCanvasLabPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/student-practice-hub" element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <StudentPracticeHubPage />
               </ProtectedRoute>
             } />
             
@@ -107,7 +140,7 @@ function App() {
 
             <Route path="/student-leaderboard" element={
               <ProtectedRoute allowedRoles={["student"]}>
-                <p>hi leaderboared</p>
+                <StudentLeaderboardPage />
               </ProtectedRoute>
               } />
 
@@ -117,9 +150,59 @@ function App() {
                 <TeacherPage />
               </ProtectedRoute>
               } />
+            <Route path="/teacher-quiz" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherQuizPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-quiz/create" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherContentEditorPage kind="quiz" />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-assessments" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherAssessmentsPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-assessments/create" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherContentEditorPage kind="assessment" />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-assignments" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherAssignmentsPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-assignments/create" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherContentEditorPage kind="assignment" />
+              </ProtectedRoute>
+              } />
+            <Route path="/teacher-leaderboard" element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherLeaderboardPage />
+              </ProtectedRoute>
+              } />
             <Route path="/admin-dashbored" element={
               <ProtectedRoute allowedRoles={["admin"]}>
-                <p>admin dashbored</p>
+                <AdminPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/admin-users" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminUsersPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/admin-content-review" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminContentReviewPage />
+              </ProtectedRoute>
+              } />
+            <Route path="/admin-system-settings" element={
+              <ProtectedRoute allowedRoles={["admin"]}>
+                <AdminSystemSettingsPage />
               </ProtectedRoute>
               } />
           </Route>
